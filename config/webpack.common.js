@@ -2,7 +2,7 @@ const path = require("path");
 const pathsConfig = require("./paths");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const PrettierPlugin = require("prettier-webpack-plugin");
-const { cleanWebpackPlugin } = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   // Our application entry point.
@@ -21,7 +21,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: pathsConfig.src + "/index.html",
     }),
-    new cleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
     new PrettierPlugin(),
   ],
 
@@ -36,7 +36,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(tsx|js|jsx)?$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
@@ -47,13 +47,13 @@ module.exports = {
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: "asset/inline",
-      }
+      },
     ],
   },
 
   // Telling webpack which extensions
   // we are interested in.
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
 };
