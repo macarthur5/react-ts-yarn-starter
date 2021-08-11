@@ -1,4 +1,3 @@
-const path = require("path");
 const pathsConfig = require("./paths");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const PrettierPlugin = require("prettier-webpack-plugin");
@@ -6,14 +5,15 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   // Our application entry point.
-  entry: pathsConfig.src + "/index.tsx",
+  entry: [pathsConfig.src + "/index.tsx"],
 
   // What file name should be used for the result file,
   // and where it should be palced.
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    assetModuleFilename: "assets/[hash][ext][query]"
+    filename: "[name].bundle.js",
+    path: pathsConfig.build,
+    publicPath: "/",
+    assetModuleFilename: "assets/[hash][ext][query]",
   },
 
   // Use all the plugins.
@@ -21,6 +21,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: pathsConfig.src + "/index.html",
+      filename: "index.html" // output file
     }),
     new CleanWebpackPlugin(),
     new PrettierPlugin(),
@@ -55,6 +56,10 @@ module.exports = {
   // Telling webpack which extensions
   // we are interested in.
   resolve: {
+    modules: [pathsConfig.src, "node_modules"],
     extensions: [".tsx", ".ts", ".js", ".jsx"],
+    alias: {
+      "@": pathsConfig.src,
+    },
   },
 };
