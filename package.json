@@ -10,6 +10,11 @@
     "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
   },
+  "keywords": [
+    "webpack",
+    "webpack 5",
+    "webpack boilerplate"
+  ],
   "dependencies": {
     "@types/react": "^17.0.16",
     "@types/react-dom": "^17.0.9",

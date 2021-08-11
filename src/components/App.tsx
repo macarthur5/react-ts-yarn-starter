@@ -2,9 +2,9 @@ import React, { Suspense, useState } from "react";
 import image1 from "./../assets/images/Image1.jpeg";
 import svgImage from "./../assets/vectors/folder.svg";
 
-const Component = React.lazy(() => import("./js-component"));
-
 import "./App.scss";
+
+const Component = React.lazy(() => import("./js-component"));
 
 const App: React.FC = () => {
   const [showComponent, setShowComponent] = useState<boolean>(false);
