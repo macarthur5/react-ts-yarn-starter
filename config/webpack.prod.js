@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devtool: false,
   output: {
     path: pathsConfig.build,
-    publicPath: "/",
+    publicPath: "./",
     filename: "js/[name].bundle.js",
   },
   plugins: [
